@@ -1,6 +1,6 @@
-# Springboot Beginner Project
+# Springboot Starter
 
-## This project is intended to create a log in / sign up page using springMVC, mybatis and mysql database. 
+# This project is intended to create a log in / sign up page using springMVC, mybatis and mysql database. 
 
 ### How to use this
 
