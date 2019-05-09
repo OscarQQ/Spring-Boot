@@ -1,8 +1,8 @@
 # Springboot Starter
 
-# This project is intended to create a log in / sign up page using springMVC, mybatis and mysql database. 
+This project is intended to create a log in / sign up page using springMVC, mybatis and mysql database. 
 
-### How to use this
+## How to use this
 
 1. Create a mysql database called loginSys locally and set up a table called login imcluding 2 columns (email and password).
 2. Fill the table with several rows for testing.
