@@ -14,6 +14,7 @@ import java.util.List;
 @RequestMapping("/loginSys")
 public class UserController {
 
+    // service layer setup
     @Autowired
     private UserService userservice;
 
@@ -21,6 +22,7 @@ public class UserController {
         this.userservice = userservice;
     }
 
+    // From Controller, applying service layer method
     @GetMapping("/all")
     public List<User> getAll(){
         return userservice.getall();
@@ -40,4 +42,14 @@ public class UserController {
 //    public User signup(){
 //
 //    }
+
+//    activiti 6.0
+//    ajax
+//    bootstrap
+//    aop    qiemian tongzhi
+//    filter  request response
+//    file upload
+//    interceptor
+
+
 }

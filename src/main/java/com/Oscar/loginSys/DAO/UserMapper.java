@@ -11,6 +11,8 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
+    // Using Mybatis to interact with mysql database
+
     @Select("SELECT * FROM login")
     List<User> getAll();
 
