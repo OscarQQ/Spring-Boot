@@ -8,9 +8,16 @@ html, body {
     font-family: 'Numans', sans-serif;
 }
 
-#click {
+#all {
     position:absolute;
     left: 10%;
     top: 10%;
+
+}
+
+#update {
+    position:absolute;
+    left: 10%;
+    top: 20%;
 
 }
