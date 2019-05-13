@@ -8,3 +8,7 @@ This project is intended to create a log in / sign up page using springMVC, myba
 2. Fill the table with several rows for testing.
 3. Change the applications.properties file to your local mysql information
 4. Run the program, go to http://localhost:9095/loginSys/all to retrieve data from database, or go to http://localhost:9095/loginSys/update to update database
+
+## Principle
+
+HttpRequest --> Controller --> Service Layer --> DAO(Mapper) --> Database
