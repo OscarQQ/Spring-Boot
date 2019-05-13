@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html, body {
+    background-image: url('../assets/login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+}
+
+#click {
+    position:absolute;
+    left: 10%;
+    top: 10%;
+
+}
