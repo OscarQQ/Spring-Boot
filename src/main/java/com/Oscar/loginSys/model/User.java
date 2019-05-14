@@ -8,6 +8,22 @@ public class User {
         return email;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -19,4 +35,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

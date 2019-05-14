@@ -4,13 +4,14 @@ package com.Oscar.loginSys.controller;
 import com.Oscar.loginSys.Service.UserService;
 import com.Oscar.loginSys.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/loginSys")
 public class UserController {
 
@@ -23,12 +24,12 @@ public class UserController {
     }
 
     // From Controller, applying service layer method
-    @GetMapping("/all")
-    public List<User> getAll(){
-        return userservice.getall();
-    }
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ResponseBody
+    public List<User> getAll(){ return userservice.getall(); }
 
-    @GetMapping("/update")
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @ResponseBody
     public List<User> update(){
         User newppl = new User();
         newppl.setEmail("Oscar@gmail.com");
@@ -37,6 +38,12 @@ public class UserController {
         userservice.insert(newppl);
         return userservice.getall();
     }
+
+    @GetMapping("/greeting")
+    public String greeting() {
+        return "greeting";
+    }
+
 
 //    @PostMapping("/signup")
 //    public User signup(){

@@ -21,3 +21,15 @@ html, body {
     top: 20%;
 
 }
+
+#ajax{
+    position:absolute;
+    left: 10%;
+    top: 30%;
+}
+
+#p{
+    position:absolute;
+    left: 10%;
+    top: 40%;
+}

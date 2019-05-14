@@ -1,0 +1,121 @@
+1.view.internalResourceViewResolver
+parse the request
+property  name = "prefix" value = "/path"
+property name = "suffix"  value = ".html"
+
+Principle: prefix + return value + suffix (direct to physical view)
+
+public String hello(){
+    return "success";
+}
+
+2. RequestMapping(value="/path", method = requestmethod.Sth)
+
+3. Requirement of params in the path
+
+   RequestMapping(value="/path", params={"username","age!=10"})
+   go to /*/path?username=Oscar&age=11
+
+   - param1: have to include param1
+   - !param2: exclude param1
+   - param1 != value1: include param1, can't be value1
+   - {"param1 = value1","param2"}
+
+4. PathVariable: use the params in the path and pass it into the function
+    @RequestMapping("/login/{id}")
+    public String testPath(@PathVariable("id") Integer id){
+        system.out.println(id);
+        return "success";
+    }
+
+5. Filter: transfer GET and POST request to standard HTTP Request
+- /order/1 GET
+- /order/1 DELETE
+- /order/1 PUT
+- /order   POST
+
+    a) install hiddenhttpmethodfilter
+    <filter>
+    name and class(hiddenhttpmethodfilter)
+
+    <filter mapping>
+    name and url pattern /*  ps: to filter all http request
+
+    b) Delete and Put   use method POST, in the form, add hidden field and value (DELETE or PUT)
+    <input type = "hidden" name = "_method" value = "DELETE"/>
+
+6. RequestParam: use the params in url and pass them into the function
+    @RequestMapping(/testparam)
+    public String testParam (@RequestParam(value="username") String un,
+    @RequestParam(value="age", required = false, defaultValue = "0") Integer id){
+
+    }
+    visit ../testparam?username=oscar&age=20
+
+    The question mark here means there are variables following this
+
+7. requestHeader
+    Other than normal param request, this will request developer-side info, such as accept-language
+
+8. Pojo  automatically fill in the attributes of an object, rather than using RequestParam annotation
+    create a model of the object, in this case, User class, initialize with getter and setter and toString methods
+    @RequestMapping("/testPojo")
+    public String testpojo(User user){
+        system.out.println(user.toString());
+    }
+
+    in the html file, create a form action="testPojo" mtethod="POST" and several input,
+    corresponding to the private fields of User
+
+9. Spring MVC  original API: HttpServletRequest request, HttpServletResponse response
+    seldom use this in practical
+
+10. modelAndView
+    public ModelAndView test(){
+        String viewname = va;
+
+        ModelandView mav= new Modelandview(viewname);
+        modelandview.addobject("time",new Date());
+        return mav;
+    }
+
+    jsp file add    time: ${requestScope.time}
+
+11.map & model
+    public String modelmap (Map<String, Object> map){
+        map.put("named",1);
+        return "success";
+    }
+
+    jsp file add   names: ${requestScope.names};
+
+12. session attribute
+    add annotation @SessionAttributes(value = {"user"}, type = {String.class})
+    above controller
+    @RequestMapping
+    public String testAttributes(Map<String, Object> map){
+        user u = new user();
+        map.put("user",user);
+    }
+
+    the key of a map is the same as session attribute value
+
+13. @ ModelAttribute
+    public void getUser(@RequestParam(value = "id", required = false) Integer id,
+    Map<String,Object> map){
+        //get an object from database
+        map.put("user",user);
+    }
+
+    @RequestMapping("/path")
+    public String test(User user){
+        sysout(user);
+        return "success";
+    }
+
+    map key user       param User
+
+    process:
+    1. run the function with annotation model attribute
+    2. SpringMVC retrieve user form map, and cover the params of the form
+    3. SpringMVC pass in the function as the param
