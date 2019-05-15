@@ -4,6 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 public class User {
+    // annotation here to validate the input
     @Email
     private String email;
     @NotEmpty

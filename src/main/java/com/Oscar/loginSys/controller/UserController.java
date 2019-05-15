@@ -24,24 +24,42 @@ public class UserController {
         this.userservice = userservice;
     }
 
-    // From Controller, applying service layer method, return JSON data
+
+    /**From Controller, applying service layer method, return JSON data
+     *
+     * @return all users in the database of JSON format
+     */
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getAll(){ return userservice.getall(); }
 
-    //the root, will direct to index.html under the templates folder
+    /** root of the website, direct to the index.html under the templates
+     * folder through thymeleaf
+     *
+     * @return index page
+     */
     @RequestMapping("/")
     public String index() {
         return "index";
     }
 
-    // direct to sign up page, submit info there
+    /** Go to signup page. Ask the user to fill in the info
+     *
+     * @param map
+     * @return signup.html
+     */
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Map<String,Object> map) {
         map.put("user",new User());
         return "signup";
     }
 
+    /** If successfully validate the input, direct to main page, otherwise go back to sign up page
+     *
+     * @param user
+     * @param bindingResult
+     * @return index page or sign up page
+     */
     @RequestMapping(value ="/s", method = RequestMethod.POST)
     public String save(@Valid User user, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
