@@ -15,21 +15,20 @@ html, body {
 
 }
 
-#update {
-    position:absolute;
-    left: 10%;
-    top: 20%;
-
-}
-
 #ajax{
     position:absolute;
     left: 10%;
-    top: 30%;
+    top: 60%;
 }
 
 #p{
     position:absolute;
     left: 10%;
-    top: 40%;
+    top: 70%;
+}
+
+#signup{
+    position:absolute;
+    left: 10%;
+    top: 20%;
 }

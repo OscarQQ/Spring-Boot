@@ -24,27 +24,15 @@ public class UserController {
         this.userservice = userservice;
     }
 
-    // From Controller, applying service layer method
+    // From Controller, applying service layer method, return JSON data
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getAll(){ return userservice.getall(); }
 
-    //the root, will direct to index.html under templates folder
+    //the root, will direct to index.html under the templates folder
     @RequestMapping("/")
     public String index() {
         return "index";
-    }
-
-    //A unchangeable built-in user info
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
-    @ResponseBody
-    public List<User> update(){
-        User newppl = new User();
-        newppl.setEmail("Oscar@gmail.com");
-        newppl.setPassword("22222");
-
-        userservice.insert(newppl);
-        return userservice.getall();
     }
 
     // direct to sign up page, submit info there
