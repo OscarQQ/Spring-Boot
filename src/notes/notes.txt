@@ -1,3 +1,12 @@
+activiti 6.0
+ajax
+bootstrap
+aop    qiemian tongzhi
+filter  request response
+file upload
+interceptor
+
+
 1.view.internalResourceViewResolver
 parse the request
 property  name = "prefix" value = "/path"
@@ -119,3 +128,32 @@ public String hello(){
     1. run the function with annotation model attribute
     2. SpringMVC retrieve user form map, and cover the params of the form
     3. SpringMVC pass in the function as the param
+
+    pass in the function, we need to add @ModelAttribute("user")
+    If we dont have a model attribute function
+     change the annotation passed into the function
+    Or add model attribute function
+
+14. Common usage:
+    // first direct to the form page
+    @RequestMapping(value = "/abc", method = requestMethod.GET)
+    public String show(map<String, Object> map){
+        map.put("something", the method from DAO)
+        map.put("sth", new Employee());
+        return "destination";    //direct  to other html
+    }
+
+    // submit the form form form.html
+    the action of the form is abc, modelattribute="sth "
+    path of a form is the same as the attribute of html name
+
+    Normally, we reach the form page through http GET request, requestmapping get
+    and inside the attributes of the form, choose POST to update the database
+
+    //lastly, post the data in the database.
+    @RequestMapping(value = "/abc", method = RequestMethod.POST)
+    public String save(Employee employee){
+        employeeDAO.save(employee);
+        return "redirect:/mainpage";
+    }
+

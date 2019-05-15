@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/loginSys")
@@ -28,6 +29,11 @@ public class UserController {
     @ResponseBody
     public List<User> getAll(){ return userservice.getall(); }
 
+    @RequestMapping("/")
+    public String index() {
+        return "index";
+    }
+
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     @ResponseBody
     public List<User> update(){
@@ -39,24 +45,16 @@ public class UserController {
         return userservice.getall();
     }
 
-    @GetMapping("/greeting")
-    public String greeting() {
-        return "greeting";
+    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    public String signup(Map<String,Object> map) {
+        map.put("user",new User());
+        return "signup";
     }
 
-
-//    @PostMapping("/signup")
-//    public User signup(){
-//
-//    }
-
-//    activiti 6.0
-//    ajax
-//    bootstrap
-//    aop    qiemian tongzhi
-//    filter  request response
-//    file upload
-//    interceptor
-
+    @RequestMapping(value ="/s", method = RequestMethod.POST)
+    public String save(User user){
+        userservice.insert(user);
+        return "redirect:/";
+    }
 
 }
