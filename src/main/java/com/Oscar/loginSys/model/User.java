@@ -1,7 +1,12 @@
 package com.Oscar.loginSys.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class User {
+    @Email
     private String email;
+    @NotEmpty
     private String password;
 
     public String getEmail() {

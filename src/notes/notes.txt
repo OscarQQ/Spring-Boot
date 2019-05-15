@@ -110,19 +110,32 @@ public String hello(){
     the key of a map is the same as session attribute value
 
 13. @ ModelAttribute
+    edit the database
+
+    1. Direct to the page where we need to edit new info
+    @RequestMapping(value = "/emp/{id}", method = GET)
+    public String input(@PathVariable("id") Integer id, Map){
+        map.put("user",DAO.get(id));
+        return "edit page";
+    }
+
+    2. model attribute.
     public void getUser(@RequestParam(value = "id", required = false) Integer id,
     Map<String,Object> map){
         //get an object from database
         map.put("user",user);
     }
 
-    @RequestMapping("/path")
+    3.
+    @RequestMapping("/path", method = PUT)
     public String test(User user){
-        sysout(user);
-        return "success";
+        DAO.save(user);
+        return "redirect:/mainpage";
     }
 
-    map key user       param User
+    map key user       param User    [class name]
+
+    Absolute path: ${pageContext.request.contextPath}
 
     process:
     1. run the function with annotation model attribute
@@ -136,7 +149,7 @@ public String hello(){
 
 14. Common usage:
     // first direct to the form page
-    @RequestMapping(value = "/abc", method = requestMethod.GET)
+    @RequestMapping(value = "/abc", method = requestMethod.GET)""
     public String show(map<String, Object> map){
         map.put("something", the method from DAO)
         map.put("sth", new Employee());
@@ -156,4 +169,33 @@ public String hello(){
         employeeDAO.save(employee);
         return "redirect:/mainpage";
     }
+
+15. initbinder
+
+    initialize the webdatabinder       inside the controller
+    @initBinder
+    public void initBinder(WebDataBinder binder){
+        binder.setDisallowedFields("a field of the model")
+    }
+
+16. Data format place it above the private field of the model
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NUmberFormat(pattern = "#,###,###.#")
+
+    update the POST function to check the format
+
+    public String save(Employee employee, BindingResult result){
+        if (bindingResult.hasErrors()) {
+                    return "signup";
+                }
+        return "normal page";
+    }
+
+    Check the format
+    add annotation above the private field
+    @Notempty --> must be filled in
+    @Past     --> Date of Birth
+    add @valid annotation before the User user update function to validate the input
+
+
 

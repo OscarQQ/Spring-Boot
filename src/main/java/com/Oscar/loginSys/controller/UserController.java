@@ -5,10 +5,10 @@ import com.Oscar.loginSys.Service.UserService;
 import com.Oscar.loginSys.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +55,10 @@ public class UserController {
     }
 
     @RequestMapping(value ="/s", method = RequestMethod.POST)
-    public String save(User user){
+    public String save(@Valid User user, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "signup";
+        }
         userservice.insert(user);
         //direct to controller mapping and eventually go to index.html
         return "redirect:/";
