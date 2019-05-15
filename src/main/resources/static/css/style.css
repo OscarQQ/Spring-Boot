@@ -8,27 +8,27 @@ html, body {
     font-family: 'Numans', sans-serif;
 }
 
+.container{
+height: 100%;
+align-content: center;
+}
+
+.card{
+height: 430px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgb(245, 143, 92);
+}
+
+.card-header h3{
+    color: white;
+}
+
 #all {
     position:absolute;
     left: 10%;
-    top: 10%;
-
+    bottom: 10%;
 }
 
-#ajax{
-    position:absolute;
-    left: 10%;
-    top: 60%;
-}
 
-#p{
-    position:absolute;
-    left: 10%;
-    top: 70%;
-}
-
-#signup{
-    position:absolute;
-    left: 10%;
-    top: 20%;
-}

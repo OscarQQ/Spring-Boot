@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService {
         usermapper.insert(user);
 
     }
+
+    @Override
+    public boolean validate(User user) {
+        return usermapper.validate(user);
+    }
 }

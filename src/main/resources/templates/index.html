@@ -49,13 +49,47 @@
     </div>
 </nav>
 
-<button id = "all" type="button" class="btn btn-primary" onclick="location.href='/loginSys/all'"> Show all users in db </button>
+<div class="container">
+    <div class="d-flex justify-content-center h-100">
+        <div class="card">
+            <div class="card-header">
+                <h3>Sign Up</h3>
+                <div class="d-flex justify-content-end social_icon">
+                    <span><i class="fab fa-facebook-square"></i></span>
+                    <span><i class="fab fa-google-plus-square"></i></span>
+                    <span><i class="fab fa-twitter-square"></i></span>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/loginSys/signup" method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
+                        <tr>
+                            <td  class="label"><div id="error" align="center"></div>  <br></td>
+                        </tr>
+                        <small id="emailHelp" class="form-text text-muted">随便加点东西在这里.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                    </div>
 
-<a id = "ajax" href="assets/hello.txt" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Test Ajax</a>
-<p id = 'p'> Welcome! </p>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex justify-content-center links">
+                    Already have an account?<a href="/loginSys/signin">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id = "all" type="button" class="btn btn-outline-info" onclick="location.href='/loginSys/all'">Show all users in db</button>
 
 
-<a id = "signup" href="/loginSys/signup" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Sign up</a>
 
 <script src="js/index.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

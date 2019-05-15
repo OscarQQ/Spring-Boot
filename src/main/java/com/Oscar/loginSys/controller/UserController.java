@@ -39,35 +39,42 @@ public class UserController {
      * @return index page
      */
     @RequestMapping("/")
-    public String index() {
+    public String index(Map<String,Object> map) {
+        map.put("user",new User());
         return "index";
     }
 
-    /** Go to signup page. Ask the user to fill in the info
+    /** Go to signin page. Ask the user to fill in the info
      *
      * @param map
-     * @return signup.html
+     * @return signin.html
      */
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
-    public String signup(Map<String,Object> map) {
+    @RequestMapping(value = "/signin", method = RequestMethod.GET)
+    public String signin(Map<String,Object> map) {
         map.put("user",new User());
-        return "signup";
+        return "signin";
     }
 
-    /** If successfully validate the input, direct to main page, otherwise go back to sign up page
+    /** If successfully validate the input, direct to success page, otherwise go back to error page
      *
      * @param user
      * @param bindingResult
      * @return index page or sign up page
      */
-    @RequestMapping(value ="/s", method = RequestMethod.POST)
+    @RequestMapping(value ="/signup", method = RequestMethod.POST)
     public String save(@Valid User user, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "signup";
+            return "error";
         }
-        userservice.insert(user);
+        if(! userservice.validate(user)){
+            userservice.insert(user);
+        }else{
+            return "error";
+        }
         //direct to controller mapping and eventually go to index.html
-        return "redirect:/";
+        return "success";
     }
+
+
 
 }

@@ -8,4 +8,6 @@ public interface UserService {
      List<User> getall();
 
      void insert(User user);
+
+     boolean validate(User user);
 }

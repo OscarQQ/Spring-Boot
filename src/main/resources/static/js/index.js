@@ -1,5 +1,5 @@
 window.onload = function(){
-    var p = document.getElementById('p');
+    var p = document.getElementById('error');
 
     document.getElementById("ajax").onclick = function(){
 

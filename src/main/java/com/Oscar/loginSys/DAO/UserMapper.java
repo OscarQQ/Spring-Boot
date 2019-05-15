@@ -26,4 +26,7 @@ public interface UserMapper {
      */
     @Insert("INSERT INTO login(email,password) VALUES (#{email},#{password})")
     void insert(User newppl);
+
+    @Select("SELECT EXISTS(SELECT 1 FROM login WHERE email=#{email} )")
+    boolean validate(User user);
 }

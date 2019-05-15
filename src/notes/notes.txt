@@ -197,5 +197,18 @@ public String hello(){
     @Past     --> Date of Birth
     add @valid annotation before the User user update function to validate the input
 
+17. ResponseEntity    One functionality of it is to download files
+    @RequestMapping(value = "/testEntity")
+    public ResponseEntity<byte[]> testentity (HttpSession session) throws IOException {
+        InputStream in = session.getServletContext().getResourceAsStream("/static/assets/notes.txt");
+        byte[] body = new byte[in.available()];
+        in.read(body);
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment;filename=notes.txt");
+
+        HttpStatus status = HttpStatus.OK;
+
+        return new ResponseEntity<byte[]>(body,headers,status);
+    }
 
