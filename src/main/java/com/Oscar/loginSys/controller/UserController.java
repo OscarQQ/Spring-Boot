@@ -29,11 +29,13 @@ public class UserController {
     @ResponseBody
     public List<User> getAll(){ return userservice.getall(); }
 
+    //the root, will direct to index.html under templates folder
     @RequestMapping("/")
     public String index() {
         return "index";
     }
 
+    //A unchangeable built-in user info
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     @ResponseBody
     public List<User> update(){
@@ -45,6 +47,7 @@ public class UserController {
         return userservice.getall();
     }
 
+    // direct to sign up page, submit info there
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signup(Map<String,Object> map) {
         map.put("user",new User());
@@ -54,6 +57,7 @@ public class UserController {
     @RequestMapping(value ="/s", method = RequestMethod.POST)
     public String save(User user){
         userservice.insert(user);
+        //direct to controller mapping and eventually go to index.html
         return "redirect:/";
     }
 

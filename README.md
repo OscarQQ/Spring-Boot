@@ -15,5 +15,6 @@ users in the db, the second one will update the db.
 
 HttpRequest --> Controller --> Service Layer --> DAO(Mapper) --> Database
 
-index.html is placed under resources --> static folder, Spring boot will automatically run the html file there.
+All html files are placed under templates folder, in the controller, the requestmapping("/") will direct to
+index.html(main page) through thymeleaf.
 
