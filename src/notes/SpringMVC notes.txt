@@ -212,3 +212,13 @@ public String hello(){
         return new ResponseEntity<byte[]>(body,headers,status);
     }
 
+18. Interceptor
+    Pre handle --> httpRequest --> Post handle --> Render -->After Completion
+    Check the auth                 render the view
+
+    use webmvc configurer (in latest spring boot version, not adapter)
+
+    addPathPatterns("/**") means intercept all requests，
+    excludePathPatterns("/login", "/register") to exclude the path
+
+19. Exception Handler

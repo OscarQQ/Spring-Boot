@@ -1,0 +1,19 @@
+1. Syntax: $(selector).action()
+class: .
+id: #
+this: current element
+"p":  all <p> elements
+
+The Document Ready Event:
+$(function(){
+
+  // jQuery methods go here...
+
+});
+
+$("p").click(function(){
+  $(this).hide();
+});
+
+Get Attributes - attr()
+The jQuery attr() method is used to get attribute values.
