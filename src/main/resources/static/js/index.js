@@ -1,20 +1,30 @@
-window.onload = function(){
-    var p = document.getElementById('error');
+$(function(){
+    submit_form();
+})
 
-    document.getElementById("ajax").onclick = function(){
-
-    var request = new XMLHttpRequest();
-    var url = "assets/hello.txt";
-    request.open("GET",url);
-    request.send(null);
-
-    request.onreadystatechange = function(){
-        if(request.readyState == 4){
-            if(request.status == 304 || request.status == 200)
-                p.innerHTML = request.responseText;
+function submit_form(){
+    alert("hi");
+    var search = {};
+    search["email"] = $('#exampleInputEmail1').val();
+    $.ajax({
+        type: 'POST',
+        contentType:"application/json",
+        url:"/loginSys/signup",
+        data:JSON.stringify(search),
+        dataType:'json',
+        cache:false,
+        timeout:6000,
+        success: function(data){
+            document.getElementById("error").innerHTML =
+            data.msg;
+        },
+        error:function(e){
+            document.getElementById("error").innerHTML =
+                        data.msg;
         }
-    }
-    return false;
+    })
 
-    }
+
 }
+
+
