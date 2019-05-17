@@ -3,24 +3,35 @@ $(function(){
 })
 
 function submit_form(){
-    alert("hi");
-    var search = {};
-    search["email"] = $('#exampleInputEmail1').val();
+    var user = {
+                "email" : $('#exampleInputEmail1').val(),
+                "password" : $('exampleInputPassword1').val()
+    		}
+    var request = JSON.stringify(user);
+    alert(request);
     $.ajax({
         type: 'POST',
         contentType:"application/json",
         url:"/loginSys/signup",
-        data:JSON.stringify(search),
-        dataType:'json',
+        data: JSON.stringify(user),
+        dataType:"json",
         cache:false,
         timeout:6000,
-        success: function(data){
-            document.getElementById("error").innerHTML =
-            data.msg;
+        success: function(result){
+            alert(result);
+            if(result == "success"){
+                alert("success");
+                $("#error").css("color","green");
+                $("#error").html("success");
+            }else{
+                alert("fail");
+                $("#error").css("color","red");
+                $("#error").html("fail");
+            }
+
         },
         error:function(e){
-            document.getElementById("error").innerHTML =
-                        data.msg;
+           alert("exception");
         }
     })
 

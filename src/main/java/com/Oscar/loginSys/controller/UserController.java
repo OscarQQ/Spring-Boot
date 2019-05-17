@@ -4,6 +4,8 @@ package com.Oscar.loginSys.controller;
 import com.Oscar.loginSys.Service.UserService;
 import com.Oscar.loginSys.model.AjaxResponse;
 import com.Oscar.loginSys.model.User;
+import com.Oscar.loginSys.model.Validator;
+import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -59,26 +61,19 @@ public class UserController {
 
     /** If successfully validate the input, direct to success page, otherwise go back to error page
      *
-     * @param user
-     * @param bindingResult
+     *
      * @return index page or sign up page
      */
-    @RequestMapping(value ="/signup", method = RequestMethod.POST)
-    public ResponseEntity<?> signup(@Valid @RequestBody User user, BindingResult bindingResult){
-        AjaxResponse result = new AjaxResponse();
+    @PostMapping(value ="/signup")
+    @ResponseBody
+    public String signup(@Valid @RequestBody User user){
         System.out.println("reach here");
 
-        if (bindingResult.hasErrors()) {
-            result.setMsg("there is a error here");
-            return ResponseEntity.badRequest().body(result);
-        }
         if(! userservice.validate(user)){
             userservice.insert(user);
-            result.setMsg("success");
-            return ResponseEntity.ok(result);
+            return "success";
         }else{
-            result.setMsg("conflict");
-            return ResponseEntity.badRequest().body(result);
+            return "conflict";
         }
 
     }
