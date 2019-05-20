@@ -59,10 +59,9 @@ public class UserController {
      * @return index page or sign up page
      */
     @PostMapping(value ="/signup")
+    @ResponseBody
     public Response signup(@RequestBody User user){
-
         System.out.println("reach here");
-
         Response response = new Response("done",userservice.getall());
         if(! userservice.validate(user)){
             userservice.insert(user);
@@ -73,7 +72,4 @@ public class UserController {
         }
 
     }
-
-
-
 }

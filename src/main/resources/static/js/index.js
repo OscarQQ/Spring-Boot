@@ -1,5 +1,3 @@
-
-
 $( document ).ready(function() {
 
 	// SUBMIT FORM
@@ -9,7 +7,6 @@ $( document ).ready(function() {
 		ajaxPost();
 	});
 
-
     function ajaxPost(){
 
     	// PREPARE FORM DATA
@@ -17,15 +14,19 @@ $( document ).ready(function() {
     		email : $("#exampleInputEmail1").val(),
     		password :  $("#exampleInputPassword1").val()
     	}
-    	alert(formData);
     	// DO POST
     	$.ajax({
 			type : "POST",
 			contentType : "application/json",
-			url : window.location + "/signup",
+			url :window.location + "signup",
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			success : function(result) {
+			    if(result.status == "done"){
+                    $("#error").html("success registered");
+			    }else{
+			        $("#error").html("<strong>Error, this account have already been registered</strong>");
+			    }
 				console.log(result);
 			},
 			error : function(e) {
@@ -33,7 +34,6 @@ $( document ).ready(function() {
 				console.log("ERROR: ", e);
 			}
 		});
-
     	// Reset FormData after Posting
     	resetData();
 
@@ -44,6 +44,5 @@ $( document ).ready(function() {
     	$("#exampleInputPassword1").val("");
     }
 })
-
 
 
