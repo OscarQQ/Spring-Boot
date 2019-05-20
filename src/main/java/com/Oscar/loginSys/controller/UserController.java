@@ -1,23 +1,17 @@
 package com.Oscar.loginSys.controller;
 
 
+import com.Oscar.loginSys.Response.Response;
 import com.Oscar.loginSys.Service.UserService;
-import com.Oscar.loginSys.model.AjaxResponse;
 import com.Oscar.loginSys.model.User;
-import com.Oscar.loginSys.model.Validator;
-import com.fasterxml.jackson.databind.util.JSONWrappedObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/loginSys")
 public class UserController {
 
     // service layer setup
@@ -65,15 +59,17 @@ public class UserController {
      * @return index page or sign up page
      */
     @PostMapping(value ="/signup")
-    @ResponseBody
-    public String signup(@Valid @RequestBody User user){
+    public Response signup(@RequestBody User user){
+
         System.out.println("reach here");
 
+        Response response = new Response("done",userservice.getall());
         if(! userservice.validate(user)){
             userservice.insert(user);
-            return "success";
+            return response;
         }else{
-            return "conflict";
+            response.setStatus("fail");
+            return response;
         }
 
     }
