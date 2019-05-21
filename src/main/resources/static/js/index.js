@@ -22,8 +22,9 @@ $( document ).ready(function() {
 			data : JSON.stringify(formData),
 			dataType : 'json',
 			success : function(result) {
-			    if(result.status == "done"){
-                    $("#error").html("success registered");
+			    if(result.status === "done"){
+                    // language=JQuery-CSS
+					$("#error").html("success registered");
 			    }else{
 			        $("#error").html("<strong>Error, this account have already been registered</strong>");
 			    }
